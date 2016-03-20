@@ -10,7 +10,7 @@ from thriftpy.thrift import TClient
 from thriftpy.transport import TBufferedTransport, TFramedTransport, TSocket
 from thriftpy.protocol import TBinaryProtocol
 # TODO: https://github.com/eleme/thriftpy/issues/187
-from thriftpy.protocol import TCompactProtocol
+# from thriftpy.protocol import TCompactProtocol
 
 from .Hbase_thrift import Hbase, ColumnDescriptor
 from .table import Table
@@ -25,8 +25,8 @@ THRIFT_TRANSPORTS = dict(
 )
 THRIFT_PROTOCOLS = dict(
     binary=TBinaryProtocol,
-    compact=TCompactProtocol,
-    # compact=None,  # TODO: https://github.com/eleme/thriftpy/issues/187
+    # compact=TCompactProtocol,
+    compact=None,  # TODO: https://github.com/eleme/thriftpy/issues/187
 )
 
 DEFAULT_HOST = 'localhost'
