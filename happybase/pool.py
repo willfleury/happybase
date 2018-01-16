@@ -4,7 +4,7 @@ HappyBase connection pool module.
 
 import contextlib
 import logging
-import Queue
+import queue
 import socket
 import threading
 
@@ -61,13 +61,13 @@ class ConnectionPool(object):
             "Initializing connection pool with %d connections", size)
 
         self._lock = threading.Lock()
-        self._queue = Queue.LifoQueue(maxsize=size)
+        self._queue = queue.LifoQueue(maxsize=size)
         self._thread_connections = threading.local()
 
         connection_kwargs = kwargs
         connection_kwargs['autoconnect'] = False
 
-        for i in xrange(size):
+        for i in range(size):
             connection = Connection(**connection_kwargs)
             self._queue.put(connection)
 
@@ -81,7 +81,7 @@ class ConnectionPool(object):
         """Acquire a connection from the pool."""
         try:
             return self._queue.get(True, timeout)
-        except Queue.Empty:
+        except queue.Empty:
             raise NoConnectionsAvailable(
                 "No connection available from pool within specified "
                 "timeout")
