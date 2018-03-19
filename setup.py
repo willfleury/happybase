@@ -2,7 +2,7 @@ from os.path import join, dirname
 from setuptools import find_packages, setup
 
 __version__ = None
-execfile('happybase/_version.py')
+exec(open('happybase/_version.py', 'r').read())
 
 
 def get_file_contents(filename):
@@ -32,11 +32,13 @@ setup(
     install_requires=get_install_requires(),
     packages=find_packages(exclude=['tests']),
     license="MIT",
+    test_suite='nose.collector',
     classifiers=(
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 3",
         "Topic :: Database",
         "Topic :: Software Development :: Libraries :: Python Modules",
     )
